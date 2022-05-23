@@ -1,9 +1,15 @@
 #!/bin/sh
 #~./bashrc
 
+FILENAME="whyAnswers.txt"
 CHECKNUM='^[0-9]+$'
 TOTAL=0
-cat whyAnswers.txt | {
+if ! [[ -f "$FILENAME" ]]
+then
+	echo Error: datafile cannot be found
+	exit 2
+fi
+cat $FILENAME | {
 while IFS= read -r LINE
 do
 	if [[ ${LINE:0:1} = "%" ]]
@@ -19,11 +25,12 @@ elif [[ $# == 1 ]] && [[ $1 =~ $CHECKNUM ]] && [[ $1 < $TOTAL ]]
 then
 	INDEX=$1
 else
-	echo "Error Message"
-	exit
+	echo why: invald option -- \'$1\'
+	echo Try \'why --help\' for more information.
+	exit 1
 fi
 COUNT=0
-cat whyAnswers.txt | while IFS= read -r LINE
+cat $FILENAME | while IFS= read -r LINE
 do
         FIRSTCHAR="${LINE:0:1}"
 	if [[ $FIRSTCHAR == "%" ]]
