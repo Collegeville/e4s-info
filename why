@@ -1,0 +1,32 @@
+#!/bin/sh
+#~./bashrc
+
+CHECKNUM='^[0-9]+$'
+TOTAL="$(fgrep -o % whyAnswers.txt | wc -l)"
+INDEX=-1
+if [[ $# == 0 ]]
+then
+        INDEX=$((RANDOM%TOTAL))
+elif [[ $# == 1 ]] && [[ $1 =~ $CHECKNUM ]] && [[ $1 < $TOTAL ]]
+then
+	INDEX=$1
+else
+	echo "Error Message"
+	exit
+fi
+COUNT=0
+cat whyAnswers.txt | while IFS= read -r LINE
+do
+        FIRSTCHAR="${LINE:0:1}"
+	if [[ $FIRSTCHAR == "%" ]]
+	then
+		((COUNT=COUNT+1))
+		if [[ $COUNT > $INDEX ]]
+		then
+			exit
+		fi
+	elif [[ $COUNT == $INDEX ]]
+	then
+		echo "$LINE"
+	fi
+done
