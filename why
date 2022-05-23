@@ -2,7 +2,15 @@
 #~./bashrc
 
 CHECKNUM='^[0-9]+$'
-TOTAL="$(fgrep -o % whyAnswers.txt | wc -l)"
+TOTAL=0
+cat whyAnswers.txt | {
+while IFS= read -r LINE
+do
+	if [[ ${LINE:0:1} = "%" ]]
+	then
+		((TOTAL=TOTAL+1))
+	fi
+done
 INDEX=-1
 if [[ $# == 0 ]]
 then
@@ -30,3 +38,4 @@ do
 		echo "$LINE"
 	fi
 done
+}
