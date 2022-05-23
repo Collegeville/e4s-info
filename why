@@ -1,8 +1,33 @@
 #!/bin/sh
 #~./bashrc
 
+############################################################
+# help                                                     #
+############################################################
+help()
+{
+	# Display Help
+	echo "Usage: why [INDEX]"
+	echo "Print a quotation from an author about why the E4S Software exists."
+	echo
+	echo "Options:"
+	echo "  -#				an index relating to a certain quote in the datafile;"
+	echo "				 the current indexes available are 0-$(($TOTAL-1))"
+	echo
+	echo "Exit Status:"
+	echo " 0  if okay"
+	echo " 1  if invalid option is provided"
+	echo " 2  if datafile cannot be found"
+	echo
+}
+
+############################################################
+############################################################
+# Main program                                             #
+############################################################
+############################################################
 FILENAME="whyAnswers.txt"
-CHECKNUM='^[0-9]+$'
+CHECKNUM='^[-][0-9]+$'
 TOTAL=0
 if ! [[ -f "$FILENAME" ]]
 then
@@ -24,6 +49,10 @@ then
 elif [[ $# == 1 ]] && [[ $1 =~ $CHECKNUM ]] && [[ $1 < $TOTAL ]]
 then
 	INDEX=$1
+	((INDEX=0-INDEX))
+elif [[ $# == 1 ]] && [[ $1 == "--help" ]]
+then
+	help
 else
 	echo why: invald option -- \'$1\'
 	echo Try \'why --help\' for more information.
