@@ -22,7 +22,7 @@ The software is a command that is available to run in the termianl. The command 
 ### Specific Design Details
 - **Datafile**
     - Use the character \"\%\" as a delimiter
-            - This decision was made by looking at similar software as listed above
+      - This decision was made by looking at similar software as listed above
 - **Options**
     - No options are required to run the commands
     - Specific indexes can be accessed by using a valid -# option
@@ -34,4 +34,4 @@ The software is a command that is available to run in the termianl. The command 
 
 [//]: #
 
-    [shlomif/fortune-mod]: <https://github.com/shlomif/fortune-mod>
+[shlomif/fortune-mod]: <https://github.com/shlomif/fortune-mod>
