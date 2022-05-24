@@ -26,7 +26,7 @@ help()
 # Main program                                             #
 ############################################################
 ############################################################
-FILENAME="whyAnswers.txt"
+FILENAME="why.data"
 CHECKNUM='^[-][0-9]+$'
 TOTAL=0
 if ! [[ -f "$FILENAME" ]]
