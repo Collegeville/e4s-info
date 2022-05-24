@@ -16,5 +16,5 @@
 	"I am Groot!"
 		~Groot
 %
- % This used tocause problems due to the grep command finding all instances of % 
+ % This used to cause problems due to the grep command finding all instances of % 
 %
