@@ -7,12 +7,12 @@
 help()
 {
 	# Display Help
-	echo "Usage: why [INDEX]"
+	echo "Usage: e4s-info-why [INDEX]"
 	echo "Print a quotation from an author about why the E4S Software exists."
 	echo
 	echo "Options:"
-	echo "  -#				an index relating to a certain quote in the datafile;"
-	echo "				 the current indexes available are 0-$(($TOTAL-1))"
+	echo "  -#			an index relating to a certain quote in the datafile;"
+	echo "			 the current indexes available are 0-$(($TOTAL-1))"
 	echo
 	echo "Exit Status:"
 	echo " 0  if okay"
@@ -26,7 +26,7 @@ help()
 # Main program                                             #
 ############################################################
 ############################################################
-FILENAME="why.data"
+FILENAME="e4s-info-why.data"
 CHECKNUM='^[-][0-9]+$'
 TOTAL=0
 if ! [[ -f "$FILENAME" ]]
@@ -54,8 +54,8 @@ elif [[ $# == 1 ]] && [[ $1 == "--help" ]]
 then
 	help
 else
-	echo why: invald option -- \'$1\'
-	echo Try \'why --help\' for more information.
+	echo e4s-info-why: invald option -- \'$1\'
+	echo Try \'e4s-info-why --help\' for more information.
 	exit 1
 fi
 COUNT=0
