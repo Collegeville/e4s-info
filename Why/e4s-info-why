@@ -53,6 +53,7 @@ then
 elif [[ $# == 1 ]] && [[ $1 == "--help" ]]
 then
 	help
+	exit 0
 else
 	echo e4s-info-why: invald option -- \'$1\'
 	echo Try \'e4s-info-why --help\' for more information.

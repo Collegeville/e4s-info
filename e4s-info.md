@@ -1,9 +1,10 @@
 # **E4S Info Commands**
 
-## *All Commands*
+## *All Completed Commands*
+- e4s-info-why
 
 ### Problem Statement
-*E4S should have a interesting, interactive way to learn more about who, what, where, why, and how the E4S Software was built.*
+*E4S should have a interesting, interactive way to learn more about why (and possibly who, what, where, and how in the future) the E4S Software was built.*
 
 ### Requirements:
 - Must be easily buildable by the E4S Software
