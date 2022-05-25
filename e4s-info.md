@@ -24,12 +24,12 @@ The software is a command that is available to run in the termianl. The command 
 - why command in MatLab
 - [shlomif/fortune-mod]
 - [ruanyf/fortunes]
-- 
+- [bmc/fortunes]
 
 ### Specific Design Details
 - **Datafile**
     - Use the character \"\%\" as a delimiter
-      - This decision was made by looking at the fortune codes listed above
+      - This decision was made by looking at the fortune codes on GitHub
     - The indentation output in the terminal is dependent on the datafile so authors have the choice to provide more entertaining entries.
 - **Executable**
     - Made using a shell script in order to have fewer dependencies
@@ -45,4 +45,5 @@ The software is a command that is available to run in the termianl. The command 
 [//]: #
 
 [shlomif/fortune-mod]: <https://github.com/shlomif/fortune-mod>
-[ruanyf/fortunes]: https://github.com/ruanyf/fortunes
+[ruanyf/fortunes]: <https://github.com/ruanyf/fortunes>
+[bmc/fortunes]: <https://github.com/bmc/fortunes>
