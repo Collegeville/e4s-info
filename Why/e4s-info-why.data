@@ -16,5 +16,7 @@
 	"I am Groot!"
 		~Groot
 %
- % This used to cause problems due to the grep command finding all instances of % 
+	% This used to cause problems due to the calculation of the TOTAL variable % 
+%
+	New addition to check if TOTAL gets updated for both they e4s-info-why command and the testing file.
 %
