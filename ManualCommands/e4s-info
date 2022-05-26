@@ -1,0 +1,54 @@
+.\" Manpage For e4s-info.
+.\" Contact cgrove001@csbsju.edu to correct errors or typos.
+
+.TH E4S-INFO 1 "23 May 2022" "Experimental" "User Commands"
+
+.SH NAME
+e4s-info \- prints information about why, who, what, where, and how E4S was created 
+
+.SH SYNOPSIS
+e4s-info [OPTION]... [INDEX]
+
+.SH DESCRIPTION
+When e4s-info is run with no arguments it prints out a random quotation from a random datafiles containing information about either why, who, what, where, and how E4S was created
+
+.SH OPTIONS
+The options are as follows:
+
+.SS 
+why
+.TP 
+Choose an entry from the datafile containing information about why E4S was created
+.SS 
+what
+.TP 
+Choose an entry from the datafile containing information about what E4S is
+.SS
+who
+.TP
+Choose an entry from the datafile containing information about who created E4S
+.SS
+where
+.TP
+Choose an entry from the datafile containing information about where E4S was created
+.SS
+how
+.TP
+Choose an entry from the datafile containing information about how E4S was created
+
+.SH INDEX 
+The index works as follows:
+
+.SS
+-#
+.TP
+Append -INDEX to one of the options listed above to select a specific entry from that specific list
+
+.SH SEE ALSO
+fortune(6)
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHOR
+Carter Grove (cgrove001@csbsju.edu)

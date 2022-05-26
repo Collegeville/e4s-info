@@ -1,0 +1,127 @@
+#!/bin/sh
+#~./bashrc
+
+############################################################
+# help                                                     #
+############################################################
+help()
+{
+	# Display Help
+	echo "Usage: e4s-info [OPTION]... [INDEX]"
+	echo "Print information about the E4S Software"
+	echo
+	echo "Options:"
+	echo "  why		Choose an entry from the datafile containing information about why E4S was created"
+	echo "  what   	Choose an entry from the datafile containing information about what E4S is"
+	echo "  who    	Choose an entry from the datafile containing information about who created E4S"
+	echo "  where  	Choose an entry from the datafile containing information about where E4S was created"
+	echo "  how    	Choose an entry from the datafile containing information about how E4S was created"
+	echo
+	echo "Indexes:"
+	echo "  -#		Use after an option to specify a specific entry in a specific datafile"
+	echo
+	echo "Exit Status:"
+	echo " 0  if okay"
+	echo " 1  if invalid option is provided"
+	echo " 2  if datafile cannot be found"
+	echo
+}
+
+############################################################
+############################################################
+# Main program                                             #
+############################################################
+############################################################
+
+# Chose Datafile
+FILECHOICE=""
+if [[ $# == 0 ]]
+then
+	# Chose datafile at random
+	FILENUM=$((RANDOM%5))
+
+	if [[ $FILENUM == 0 ]]
+	then
+		FILECHOICE="e4s-info-why.data"
+	elif [[ $FILENUM == 1 ]]
+	then
+		FILECHOICE="e4s-info-who.data"
+	elif [[ $FILENUM == 2 ]]
+        then
+                FILECHOICE="e4s-info-what.data"
+	elif [[ $FILENUM == 3 ]]
+        then
+                FILECHOICE="e4s-info-where.data"
+	else
+		FILECHOICE="e4s-info-how.data"
+	fi
+
+elif [[ $# < 3 && ($1 == "why" || $1 == "what" || $1 == "who" || $1 == "where" || $1 == "how") ]]
+then 
+	# Chose specified datafile
+	for val in 'e4s-info-' $1 '.data'
+	do
+		FILECHOICE+="$val"
+	done
+	
+elif [[ $# == 1 && $1 == "--help" ]]
+then
+	help
+	exit 0
+else
+	echo "e4s-info: invalid option -- '$@'"
+	echo "Try 'e4s-info --help' for more information"
+	exit 1
+fi
+
+# Check if File Exists
+if ! [[ -f "$FILECHOICE" ]]
+then
+	echo "Error: datafile not found"
+	exit 2
+fi
+
+# Find Total Entries in Datafile
+TOTAL=0
+cat $FILECHOICE | {
+while IFS= read -r LINE
+do
+	if [[ ${LINE:0:1} = "%" ]]
+	then
+		((TOTAL=TOTAL+1))
+	fi
+done
+
+# Chose Index
+INDEX=-1
+CHECKNUM='^[-][0-9]+$'
+if [[ $# < 2 ]]
+then
+	INDEX=$((RANDOM%TOTAL))
+elif [[ $2 =~ $CHECKNUM && $2 < $TOTAL ]]
+then
+	INDEX=$((0-$2))
+else
+	echo "e4s-info: invalid option -- '$@'"
+        echo "Try 'e4s-info --help' for more information"
+	exit 1
+fi
+
+# Print Entry at INDEX
+COUNT=0
+cat $FILECHOICE | while IFS= read -r LINE
+do
+        FIRSTCHAR="${LINE:0:1}"
+	if [[ $FIRSTCHAR == "%" ]]
+	then
+		((COUNT=COUNT+1))
+		if [[ $COUNT > $INDEX ]]
+		then
+			exit
+		fi
+	elif [[ $COUNT == $INDEX ]]
+	then
+		echo "$LINE"
+	fi
+done
+}
