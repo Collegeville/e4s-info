@@ -21,6 +21,7 @@ The software is a command that is available to run in the termianl. The command 
 - **Datafile**
     - Use the character \"\%\" as a delimiter
       - This decision was made by looking at the fortune codes on GitHub
+      - Examples: [shlomif file], [ruanyf file], [bmc file]
     - The indentation output in the terminal is dependent on the datafile so authors have the choice to provide more entertaining entries.
 - **Executable**
     - Made using a shell script in order to have fewer dependencies
@@ -42,3 +43,6 @@ The software is a command that is available to run in the termianl. The command 
 [shlomif/fortune-mod]: <https://github.com/shlomif/fortune-mod>
 [ruanyf/fortunes]: <https://github.com/ruanyf/fortunes>
 [bmc/fortunes]: <https://github.com/bmc/fortunes>
+[shlomif file]: <https://github.com/shlomif/fortune-mod/blob/master/fortune-mod/datfiles/fortunes>
+[ruanyf file]: <https://github.com/ruanyf/fortunes/blob/master/data/chinese>
+[bmc file]: <https://github.com/bmc/fortunes/blob/master/fortunes>
