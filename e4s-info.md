@@ -1,7 +1,7 @@
 # **E4S Info Commands**
 
 ## Problem Statement
-*E4S should have a interesting, interactive way to learn more about why, who, what, where, and how the E4S Software was built.*
+*E4S should have a interesting, interactive way to learn more about who, what, where, why, and how the E4S Software was built.*
 
 ### Requirements:
 - Must be easily buildable by the E4S Software
@@ -10,7 +10,7 @@
 - Must be able to take the index of the answer as a parameter if a datafile is specified
 
 ### Design Details Overview
-The software is a command that is available to run in the termianl. The command is built on bash script. Heavy influences on design choices were the fortune command that runs in the terminal and other fortune commands available on GitHub.
+The software is a command that is available to run in the termianl. The command is built on bash script to reduce dependencies. Heavy influences on design choices were the fortune command that runs in the terminal and other fortune commands available on GitHub.
 - fortune command in VMWare Terminal
 - why command in MatLab
 - [shlomif/fortune-mod]
@@ -25,13 +25,13 @@ The software is a command that is available to run in the termianl. The command 
     - The indentation output in the terminal is dependent on the datafile so authors have the choice to provide more entertaining entries.
 - **Executable**
     - Made using a shell script in order to have fewer dependencies
-- **Options**
-    - No options are required to run the commands
-    - why, who, what, where, and how options are used if a certain type of response is desired
+- **Arguments**
+    - No arguments are required to run the commands
+    - why, who, what, where, and how arguments are used if a certain type of response is desired
     - Specific indexes can be accessed by using a valid -# option
-- **Index**
+- **Options**
     - Specific indexes can be chosen by using a valid -# option
-    - The use of an index is only valid if an option is specified first
+    - The use of an index is only valid if a valid argument is specified first
 - **Exit Status**
     - 0 if okay
     - 1 if invalid option is provided
