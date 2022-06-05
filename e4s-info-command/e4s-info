@@ -95,10 +95,11 @@ done
 # Chose Index
 INDEX=-1
 CHECKNUM='^[-][0-9]+$'
+CHECKTOTAL=$((0-$TOTAL))
 if [[ $# < 2 ]]
 then
 	INDEX=$((RANDOM%TOTAL))
-elif [[ $2 =~ $CHECKNUM && $2 < $TOTAL ]]
+elif [[ $2 =~ $CHECKNUM && $2 > $CHECKTOTAL ]]
 then
 	INDEX=$((0-$2))
 else
