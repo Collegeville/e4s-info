@@ -95,13 +95,19 @@ done
 # Chose Index
 INDEX=-1
 CHECKNUM='^[-][0-9]+$'
-CHECKTOTAL=$((0-$TOTAL))
 if [[ $# < 2 ]]
 then
 	INDEX=$((RANDOM%TOTAL))
-elif [[ $2 =~ $CHECKNUM && $2 > $CHECKTOTAL ]]
+elif [[ $2 =~ $CHECKNUM ]]
 then
 	INDEX=$((0-$2))
+
+	if [[ $INDEX >= $TOTAL ]]
+	then
+		echo "e4s-info: invalid option -- '$@'"
+        	echo "Try 'e4s-info --help' for more information"
+        	exit 1
+	fi
 else
 	echo "e4s-info: invalid option -- '$@'"
         echo "Try 'e4s-info --help' for more information"
