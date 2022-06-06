@@ -102,7 +102,7 @@ elif [[ $2 =~ $CHECKNUM ]]
 then
 	INDEX=$((0-$2))
 
-	if [[ $INDEX >= $TOTAL ]]
+	if [[ $INDEX -ge $TOTAL ]]
 	then
 		echo "e4s-info: invalid option -- '$@'"
         	echo "Try 'e4s-info --help' for more information"
