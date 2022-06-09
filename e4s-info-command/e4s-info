@@ -35,6 +35,7 @@ help()
 
 # Chose Datafile
 FILECHOICE=""
+FILEPREFIX="$( dirname -- "$( readlink -f -- "$0"; )"; )"
 if [ $# -eq 0 ]
 then
 	# Chose datafile at random
@@ -43,24 +44,24 @@ then
 
 	if [ $FILENUM -eq 0 ]
 	then
-		FILECHOICE="/usr/local/bin/e4s-data/e4s-info-why.data"
+		FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-why.data"
 	elif [ $FILENUM -eq 1 ]
 	then
-		FILECHOICE="/usr/local/bin/e4s-data/e4s-info-who.data"
+		FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-who.data"
 	elif [ $FILENUM -eq 2 ]
         then
-                FILECHOICE="/usr/local/bin/e4s-data/e4s-info-what.data"
+                FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-what.data"
 	elif [ $FILENUM -eq 3 ]
         then
-                FILECHOICE="/usr/local/bin/e4s-data/e4s-info-where.data"
+                FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-where.data"
 	else
-		FILECHOICE="/usr/local/bin/e4s-data/e4s-info-how.data"
+		FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-how.data"
 	fi
 
 elif  [ "$1" = "why" ] || [ "$1" = "what" ] || [ "$1" = "who" ] || [ "$1" = "where" ] || [ "$1" = "how" ] && [ $# -lt 3 ]
 then
 	# Chose specified datafile
-	for val in '/usr/local/bin/e4s-data/e4s-info-' $1 '.data'
+	for val in "$FILEPREFIX" '/e4s-data/e4s-info-' $1 '.data'
 	do
 		FILECHOICE=${FILECHOICE}"$val"
 	done
