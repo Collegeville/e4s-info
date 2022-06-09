@@ -3,7 +3,8 @@
 
 check_exit_val()
 {
-	([ $? -eq 0 ] && echo "True") || echo "False"
+	EXITSTATUS=$?
+	([ "$EXITSTATUS" -eq 0 ] && echo "True") || echo "False"
 }
 
 echo
@@ -82,6 +83,9 @@ echo "     e4s-info who -$LASTVALID (last index): ""$(check_exit_val)"
 e4s-info --help > /dev/null 2>&1
 echo "     e4s-info --help: ""$(check_exit_val)"
 
+e4s-info -h > /dev/null 2>&1
+echo "     e4s-info -h: ""$(check_exit_val)"
+
 echo
 ########## FALSE TESTS ##########
 
@@ -134,10 +138,7 @@ done < e4s-info-where.data
 e4s-info where -$FIRSTINVALID > /dev/null 2>&1
 echo "     e4s-info where -$FIRSTINVALID (first invalid index): ""$(check_exit_val)"
 
-e4s-info-why -help > /dev/null 2>&1
-echo "     -help: ""$(check_exit_val)"
-
-e4s-info-why -h > /dev/null 2>&1
-echo "     -h: ""$(check_exit_val)"
+e4s-info why -help > /dev/null 2>&1
+echo "     e4s-info -help: ""$(check_exit_val)"
 
 echo

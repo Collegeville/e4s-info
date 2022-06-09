@@ -1,12 +1,17 @@
 #!/usr/bin/sh
 #~./bashrc
 
-############################################################
-# help                                                     #
-############################################################
-help()
+argError()
 {
-	# Display Help
+	echo
+	echo "Invalid arguments -- \"$ARGS\""
+	echo "Please use \"e4s-info -h\" or \"e4s-info --help\" to display more information"
+	echo
+	exit 1
+}
+
+helpMessage()
+{
 	echo "Usage: e4s-info [OPTION]... [INDEX]"
 	echo "Print information about the E4S Software"
 	echo
@@ -25,56 +30,74 @@ help()
 	echo " 1  if invalid option is provided"
 	echo " 2  if datafile cannot be found"
 	echo
+	exit 0
 }
 
-############################################################
-############################################################
-# Main program                                             #
-############################################################
-############################################################
-
-# Chose Datafile
+ARGS=$*
 FILECHOICE=""
 FILEPREFIX="$( dirname -- "$( readlink -f -- "$0"; )"; )"
-if [ $# -eq 0 ]
-then
-	# Chose datafile at random
+DATATYPE=
+INDEX=
+
+if [ $# -eq 0 ]; then
 	NUMBER="$(awk 'BEGIN { srand(); print int(rand()*32768) }' /dev/null)"
-	FILENUM=$((NUMBER%5 ))
+        FILENUM=$((NUMBER%5 ))
 
-	if [ $FILENUM -eq 0 ]
-	then
-		FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-why.data"
-	elif [ $FILENUM -eq 1 ]
-	then
-		FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-who.data"
-	elif [ $FILENUM -eq 2 ]
-        then
-                FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-what.data"
-	elif [ $FILENUM -eq 3 ]
-        then
-                FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-where.data"
-	else
-		FILECHOICE="$FILEPREFIX/e4s-data/e4s-info-how.data"
-	fi
-
-elif  [ "$1" = "why" ] || [ "$1" = "what" ] || [ "$1" = "who" ] || [ "$1" = "where" ] || [ "$1" = "how" ] && [ $# -lt 3 ]
-then
-	# Chose specified datafile
-	for val in "$FILEPREFIX" '/e4s-data/e4s-info-' $1 '.data'
-	do
-		FILECHOICE=${FILECHOICE}"$val"
-	done
-
-elif [ $# -eq 1 ] && [ "$1" = "--help" ]
-then
-	help
-	exit 0
-else
-	echo "e4s-info: invalid option -- '$*'"
-	echo "Try 'e4s-info --help' for more information"
-	exit 1
+        if [ $FILENUM -eq 0 ]; then
+                DATATYPE="why"
+        elif [ $FILENUM -eq 1 ]; then
+                DATATYPE="who"
+        elif [ $FILENUM -eq 2 ]; then
+                DATATYPE="what"
+        elif [ $FILENUM -eq 3 ]; then
+                DATATYPE="where"
+        else
+                DATATYPE="how"
+        fi
 fi
+
+while [ "$1" != "" ] && [ $# -lt 3 ]; do
+    case $1 in
+    who)
+        DATATYPE="$1"
+	shift
+	[ -z "$1" ] || INDEX=$1
+	;;
+    what)
+        DATATYPE="$1"
+        shift
+        [ -z "$1" ] || INDEX=$1
+	;;
+    where)
+        DATATYPE="$1"
+        shift
+        [ -z "$1" ] || INDEX=$1
+	;;
+    why)
+        DATATYPE="$1"
+        shift
+        [ -z "$1" ] || INDEX=$1
+	;;
+    how)
+        DATATYPE="$1"
+        shift
+        [ -z "$1" ] || INDEX=$1
+	;;
+    -h | --help)
+        helpMessage
+        ;;
+    *)
+        argError
+        ;;
+    esac
+    shift
+done
+
+# Find datafile
+for val in "$FILEPREFIX" '/e4s-data/e4s-info-' $DATATYPE '.data'
+do
+	FILECHOICE=${FILECHOICE}"$val"
+done
 
 # Check if File Exists
 if ! [ -f "$FILECHOICE" ]
@@ -94,33 +117,22 @@ do
 done < "$FILECHOICE"
 
 # Chose Index
-INDEX=-1
-if [ $# -lt 2 ]
+if [ -z "$INDEX" ]
 then
 	NUMBER="$(awk 'BEGIN { srand(); print int(rand()*32768) }' /dev/null)"
 	INDEX=$((NUMBER%TOTAL))
 
-elif [ "$2" != "--" ]
-then
-        SECONDPARAM=$2
-	INDEXLENGTH=${#SECONDPARAM}
-        LENGTH=$(expr "$2" : "-[0-9]*")
+else
+        INDEXLENGTH=${#INDEX}
+        LENGTH=$(expr "$INDEX" : "-[0-9]*")
 	NEGTOTAL=$((0-TOTAL))
-        if [ "$INDEXLENGTH" -eq "$LENGTH" ] && [ "$LENGTH" -gt 1 ] && [ "$SECONDPARAM" -gt "$NEGTOTAL" ]
+        if [ "$INDEXLENGTH" -eq "$LENGTH" ] && [ "$LENGTH" -gt 1 ] && [ "$INDEX" -gt "$NEGTOTAL" ]
         then
-                INDEX=$((0-$2))
+                INDEX=$((0-INDEX))
 
         else
-                echo "e4s-info: invalid option -- '$*'"
-                echo "Try 'e4s-info --help' for more information"
-                exit 1
-
+                argError
         fi
-else
-        echo "e4s-info: invalid option -- '$*'"
-        echo "Try 'e4s-info --help' for more information"
-        exit 1
-
 fi
 
 # Print Entry at INDEX
