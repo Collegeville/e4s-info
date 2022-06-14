@@ -105,10 +105,12 @@ echo
 echo "Copying e4s-info command to $PATHVAR"
 
 mkdir -p "$PATHVAR"
-[ $? -eq 0 ] || { echo "Problems making directory: $PATHVAR. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"mkdir\" error code: $?"; echo; exit 3; }
+CHECKRET=$?
+[ $CHECKRET -eq 0 ] || { echo "Problems making directory: $PATHVAR. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"mkdir\" error code: $CHECKRET"; echo; exit 3; }
 echo "Directory either already exists or was created"
 cp -r e4s-info-command/ "$PATHVAR"
-[ $? -eq 0 ] || { echo "Problems copying command. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"cp\" error code: $?"; echo; exit 3; }
+CHECKRET=$?
+[ $CHECKRET -eq 0 ] || { echo "Problems copying command. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"cp\" error code: $CHECKRET"; echo; exit 3; }
 
 echo "Successfully copied e4s-info command to $PATHVAR"
 
@@ -116,10 +118,12 @@ echo
 
 echo "Copying e4s-info manual file to $MANPATHVAR"
 mkdir -p "$MANPATHVAR"
-[ $? -eq 0 ] || { echo "Problems making directory $MANPATHVAR. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"mkdir\" error code: $?"; echo; exit 3; }
+CHECKRET=$?
+[ $CHECKRET -eq 0 ] || { echo "Problems making directory $MANPATHVAR. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"mkdir\" error code: $CHECKRET"; echo; exit 3; }
 echo "Directory either already exists or was created"
 cp e4s-info-manual/e4s-info.1.gz "$MANPATHVAR"
-[ $? -eq 0 ] || { echo "Problems copying manual file. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"cp\" error code: $?"; echo; rm -r "${PATHVAR}e4s-info-command/"; exit 3; }
+CHECKRET=$?
+[ $CHECKRET -eq 0 ] || { echo "Problems copying manual file. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"cp\" error code: $CHECKRET"; echo; rm -r "${PATHVAR}e4s-info-command/"; exit 3; }
 
 echo
 
