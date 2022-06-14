@@ -125,19 +125,13 @@ echo
 
 echo "Successfully installed \"e4s-info\" command and manual page."
 echo
+
 EXTPATHVAR="${PATHVAR}e4s-info-command"
-echo "If $EXTPATHVAR is not in your PATH, you will not be able to run the command. To run the command in your current shell, run the following command: export PATH=\$PATH:$EXTPATHVAR"
-echo "If you would like to keep these changes, you need to add the path to either your ~/.bashrc,  ~/.zshrc, ~/.kshrc, or ~/.cshrc file. For bash, this would look like the following: "
-echo "     vim ~/.bashcr"
-echo "     export PATH=\$PATH:$EXTPATHVAR"
-echo "The export command would go at the bottom of the file."
-echo
 BASEMANPATH=$(dirname "$MANPATHVAR")
-echo "Likewise, if $BASEMANPATH is not in your MANPATH, you will not be able to run \"man e4s-info\". To run the command in your current shell, run the following command: export MANPATH=\$MANPATH:$BASEMANPATH"
-echo "Just like above, if you would like to keep these changes, you need to add the manpath. This will also depend on your specific system. For bash, this would look like the following: "
-echo "     vim ~/.bashcr"
+
+echo "     export PATH=\$PATH:$EXTPATHVAR"
 echo "     export MANPATH=\$MANPATH:$BASEMANPATH"
-echo "The export command would go at the bottom of the file."
+
 echo
 
 exit 0
