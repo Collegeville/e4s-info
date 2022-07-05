@@ -1,7 +1,14 @@
-	"Say whaaaaaaaat?"
-		~First Entry in What datafile
+	E4S is a collection of scientific software libraries and tools particularly suited to HPC computing environments
 %
-	???????????
+	E4S provides software for CPU and GPU devices
 %
-?
+	E4S provides a large and growing collection of software products that execute portably across multiple GPU devices
+%
+	E4S is composed of libraries and tools that are independently developed then aggregated via SDKs and finally composed into a comprehensive scientific software stack containing portable parallel programming environments, performance analysis and optimization tools, versions of the LLVM compiler suite containing HPC features, math libraries, data and viz libraries, containers, and workflow tools
+%
+	In addition to software products, E4S also provides a commitment to software quality through its community policies.  These policies guide product development, packaging, testing, and support.  Products are assessed according to their compatibility with these policies
+%	
+	E4S provides a Product DocPortal that enables a one-stop location to find out about E4S products
+%
+	E4S makes available the collective efforts of hundreds of scientific software developers
 %

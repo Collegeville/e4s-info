@@ -1,22 +1,12 @@
-	"Something 0"
-		~Person0
+	"Because expanding the frontier of HPC is better done together than alone"
+		~Mike Heroux, E4S Project Leader
 %
-	"Something 1 Something 1"
-		~Person1
+	"To get better, faster, and cheaper - pick all three"
+		~Mike Heroux, E4S Project Leader
 %
-	"Something 2
-
-	Something 2"
-		~Person2
+	Because E3S is too close to E3SM, the Energy Exascale Earth System Model
 %
-		"Testing different indentation!"
+	To make community-developed HPC software easier to build, integrate, test, install, use, and support
 %
-42
-%
-	"I am Groot!"
-		~Groot
-%
-	% This used to cause problems due to the calculation of the TOTAL variable % 
-%
-	New addition to check if TOTAL gets updated for both they e4s-info-why command and the testing file.
+	42
 %
