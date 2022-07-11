@@ -79,7 +79,7 @@ else
 	echo "Using specified command PATH"
 	PATHVAR1=$(dirname "$PATHVAR")
 	PATHVAR2=$(basename "$PATHVAR")
-	PATHVAR="${PATHVAR1}/${PATHVAR2}/"
+	PATHVAR="${PATHVAR1}/${PATHVAR2}/bin/"
 fi
 
 echo
@@ -108,7 +108,7 @@ mkdir -p "$PATHVAR"
 CHECKRET=$?
 [ $CHECKRET -eq 0 ] || { echo "Problems making directory: $PATHVAR. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"mkdir\" error code: $CHECKRET"; echo; exit 3; }
 echo "Directory either already exists or was created"
-cp -r e4s-info-command/ "$PATHVAR"
+cp -r e4s-info-command/* "$PATHVAR"
 CHECKRET=$?
 [ $CHECKRET -eq 0 ] || { echo "Problems copying command. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"cp\" error code: $CHECKRET"; echo; exit 3; }
 
@@ -123,17 +123,16 @@ CHECKRET=$?
 echo "Directory either already exists or was created"
 cp e4s-info-manual/e4s-info.1.gz "$MANPATHVAR"
 CHECKRET=$?
-[ $CHECKRET -eq 0 ] || { echo "Problems copying manual file. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"cp\" error code: $CHECKRET"; echo; rm -r "${PATHVAR}e4s-info-command/"; exit 3; }
+[ $CHECKRET -eq 0 ] || { echo "Problems copying manual file. Either use \"sudo\" before command if permission was denied, check target directory for name collisions, or check the command \"cp\" error code: $CHECKRET"; echo; rm -r "${PATHVAR}"; exit 3; }
 
 echo
 
 echo "Successfully installed \"e4s-info\" command and manual page."
 echo
 
-EXTPATHVAR="${PATHVAR}e4s-info-command"
 BASEMANPATH=$(dirname "$MANPATHVAR")
 
-echo "     export PATH=\$PATH:$EXTPATHVAR"
+echo "     export PATH=\$PATH:$PATHVAR"
 echo "     export MANPATH=\$MANPATH:$BASEMANPATH"
 
 echo
