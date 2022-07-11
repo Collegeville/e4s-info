@@ -1,6 +1,6 @@
-	How file
+	The US Department of Energy Exascale Computing Project brought hundreds of scientists from labs, universities and industry together to produce portable scientific software for GPU-enabled supercomputers. E4S is one of the outcomes from this project
 %
-	The creators were able to share ideas on GitHub
+	E4S is using the Spack package management system
 %
-	The creators were able to use the incredible package management of Spack
+	E4S software quality is improved by using the multi-blade, multi-node, multi-device compute cluster affectionately called Frank (for Frankenstein)
 %
